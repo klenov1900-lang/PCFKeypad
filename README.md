@@ -1,5 +1,9 @@
 # PCFKeypad
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Arduino](https://img.shields.io/badge/Arduino-Nano%20%7C%20Uno%20%7C%20Mega-teal)
+
 Библиотека для работы с клавиатурой 4×4 через I2C расширитель **PCF8574** на Arduino.
 
 ## ✨ Возможности
