@@ -1,0 +1,38 @@
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+PCFKeypad	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+getKey	KEYWORD2
+getCurrentKey	KEYWORD2
+isKeyPressed	KEYWORD2
+isConnected	KEYWORD2
+getLastError	KEYWORD2
+reset	KEYWORD2
+setDebounceTime	KEYWORD2
+setHoldDelay	KEYWORD2
+setRepeatDelay	KEYWORD2
+setScanInterval	KEYWORD2
+setActiveLow	KEYWORD2
+setPowerSave	KEYWORD2
+setPowerSaveTimeout	KEYWORD2
+isPowerSaveMode	KEYWORD2
+handleInterrupt	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+KEY_RELEASED	LITERAL1
+KEY_PRESSED	LITERAL1
+KEY_HOLD	LITERAL1
+KEY_ERROR	LITERAL1
+I2C_OK	LITERAL1
+I2C_ERROR	LITERAL1
+I2C_NO_DEVICE	LITERAL1
