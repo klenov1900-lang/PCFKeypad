@@ -37,7 +37,7 @@
 
 
 cd ~/Arduino/libraries/  
-git clone https://github.com/yourname/PCFKeypad.git  
+git clone https://github.com/klenov1900-lang/PCFKeypad.git
 
 🔌 Подключение  
 Схема подключения  
