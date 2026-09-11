@@ -1,9 +1,5 @@
 # PCFKeypad
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
-![Arduino](https://img.shields.io/badge/Arduino-Nano%20%7C%20Uno%20%7C%20Mega-teal)
-
 Библиотека для работы с клавиатурой 4×4 через I2C расширитель **PCF8574** на Arduino.
 
 ## ✨ Возможности
@@ -35,45 +31,51 @@
 
 ### Способ 3: Git
 
-
-cd ~/Arduino/libraries/  
+```bash
+cd ~/Arduino/libraries/
 git clone https://github.com/klenov1900-lang/PCFKeypad.git
+```
 
-🔌 Подключение  
-Схема подключения  
+## 🔌 Подключение
 
+### Схема подключения
+
+```
 Arduino Nano    ->    PCF8574    ->    Клавиатура 4x4
 ------------------------------------------------------
-A4 (SDA)        ->    SDA  
-A5 (SCL)        ->    SCL  
-5V              ->    VCC  
-GND             ->    GND  
+A4 (SDA)        ->    SDA
+A5 (SCL)        ->    SCL
+5V              ->    VCC
+GND             ->    GND
 
-PCF8574         ->    Клавиатура  
+PCF8574         ->    Клавиатура
 --------------------------------
-P4              ->    R1 (строка 1)   
-P5              ->    R2 (строка 2)  
-P6              ->    R3 (строка 3)  
-P7              ->    R4 (строка 4)  
-P0              ->    C1 (столбец 1)  
-P1              ->    C2 (столбец 2)  
-P2              ->    C3 (столбец 3)  
-P3              ->    C4 (столбец 4)  
+P4              ->    R1 (строка 1)
+P5              ->    R2 (строка 2)
+P6              ->    R3 (строка 3)
+P7              ->    R4 (строка 4)
+P0              ->    C1 (столбец 1)
+P1              ->    C2 (столбец 2)
+P2              ->    C3 (столбец 3)
+P3              ->    C4 (столбец 4)
+```
 
-Распиновка шлейфа клавиатуры  
+### Распиновка шлейфа клавиатуры
 
-Номер провода:  1    2    3    4    5    6    7    8  
-Пин:            R1   R2   R3   R4   C1   C2   C3   C4  
-Адрес PCF8574  
-По умолчанию: 0x20  
+```
+Номер провода:  1    2    3    4    5    6    7    8
+Пин:          R1   R2   R3   R4   C1   C2   C3   C4
+```
 
-Если перемычки A0-A2 замкнуты: адрес меняется  
+### Адрес PCF8574
 
-Проверить адрес можно I2C-сканером  
+- По умолчанию: **0x20**
+- Если перемычки A0-A2 замкнуты: адрес меняется
+- Проверить адрес можно I2C-сканером
 
-🚀 Быстрый старт  
+## 🚀 Быстрый старт
 
-```bash
+```cpp
 #include <Wire.h>
 #include "PCFKeypad.h"
 
@@ -105,10 +107,11 @@ void loop() {
 }
 ```
 
-📚 API
-Конструкторы
+## 📚 API
 
-```bash
+### Конструкторы
+
+```cpp
 // Стандартная клавиатура 4x4
 PCFKeypad(uint8_t addr);
 
@@ -118,35 +121,46 @@ PCFKeypad(uint8_t addr, const uint8_t rows[4], const uint8_t cols[4], char keys[
 // С прерыванием
 PCFKeypad(uint8_t addr, uint8_t intPin, const uint8_t rows[4], const uint8_t cols[4], char keys[4][4]);
 ```
-```bash
-Основные методы  
-Метод	Описание	Возврат  
-begin()	Инициализация	—  
-getKey()	Получить состояние клавиши	KEY_PRESSED, KEY_HOLD, KEY_RELEASED, KEY_ERROR  
-getCurrentKey()	Текущая нажатая клавиша	char  
-isKeyPressed()	Нажата ли любая клавиша	bool  
-isConnected()	Проверка подключения PCF8574	bool  
-getLastError()	Код последней ошибки I2C	uint8_t  
-reset()	Сброс состояния	—  
-Настройка  
-Метод	Описание	По умолчанию  
-setDebounceTime(ms)	Время антидребезга	50 мс  
-setHoldDelay(ms)	Задержка до автоповтора	800 мс  
-setRepeatDelay(ms)	Интервал автоповтора	150 мс  
-setScanInterval(ms)	Интервал сканирования	1 мс  
-setActiveLow(bool)	Полярность сигнала	true  
-Энергосбережение  
-Метод	Описание  
-setPowerSave(bool)	Включить/выключить  
-setPowerSaveTimeout(ms)	Таймаут до сна  
-isPowerSaveMode()	Проверка режима  
-Прерывания  
-Метод	Описание  
-handleInterrupt()	Вызывать из ISR  
-```
-📊 Константы
 
-```bash
+### Основные методы
+
+| Метод | Описание | Возврат |
+|-------|----------|---------|
+| `begin()` | Инициализация | — |
+| `getKey()` | Получить состояние клавиши | `KEY_PRESSED`, `KEY_HOLD`, `KEY_RELEASED`, `KEY_ERROR` |
+| `getCurrentKey()` | Текущая нажатая клавиша | `char` |
+| `isKeyPressed()` | Нажата ли любая клавиша | `bool` |
+| `isConnected()` | Проверка подключения PCF8574 | `bool` |
+| `getLastError()` | Код последней ошибки I2C | `uint8_t` |
+| `reset()` | Сброс состояния | — |
+
+### Настройка
+
+| Метод | Описание | По умолчанию |
+|-------|----------|--------------|
+| `setDebounceTime(ms)` | Время антидребезга | 50 мс |
+| `setHoldDelay(ms)` | Задержка до автоповтора | 800 мс |
+| `setRepeatDelay(ms)` | Интервал автоповтора | 150 мс |
+| `setScanInterval(ms)` | Интервал сканирования | 1 мс |
+| `setActiveLow(bool)` | Полярность сигнала | `true` |
+
+### Энергосбережение
+
+| Метод | Описание |
+|-------|----------|
+| `setPowerSave(bool)` | Включить/выключить |
+| `setPowerSaveTimeout(ms)` | Таймаут до сна |
+| `isPowerSaveMode()` | Проверка режима |
+
+### Прерывания
+
+| Метод | Описание |
+|-------|----------|
+| `handleInterrupt()` | Вызывать из ISR |
+
+## 📊 Константы
+
+```cpp
 // Состояния
 #define KEY_RELEASED 0    // Клавиша не нажата
 #define KEY_PRESSED  1    // Клавиша только что нажата
@@ -158,10 +172,12 @@ handleInterrupt()	Вызывать из ISR
 #define I2C_ERROR       1 // Ошибка передачи
 #define I2C_NO_DEVICE   2 // Устройство не найдено
 ```
-🔔 Прерывания
-Пример с прерыванием
 
-```bash
+## 🔔 Прерывания
+
+### Пример с прерыванием
+
+```cpp
 #include <Wire.h>
 #include "PCFKeypad.h"
 
@@ -195,25 +211,30 @@ void loop() {
     delay(10);
 }
 ```
-📁 Примеры
 
-Пример	Описание
-Basic	Минимальный пример
-EEPROM_Counter	Счётчик нажатий с сохранением в EEPROM
-With_Display	С дисплеем TM1637
+## 📁 Примеры
 
-⚡ Производительность
+| Пример | Описание |
+|--------|----------|
+| `Basic` | Минимальный пример |
+| `EEPROM_Counter` | Счётчик нажатий с сохранением в EEPROM |
+| `With_Display` | С дисплеем TM1637 |
 
-Параметр	Значение
-Flash	~7.5 КБ (24%)
-RAM	~841 байт (41%)
-Скорость сканирования	1 мс
-Антидребезг	50 мс
-Автоповтор	500/150 мс
-Для Arduino Nano (ATmega328P)
+## ⚡ Производительность
 
-🐛 Обработка ошибок
-```bash
+| Параметр | Значение |
+|----------|----------|
+| Flash | ~7.5 КБ (24%) |
+| RAM | ~841 байт (41%) |
+| Скорость сканирования | 1 мс |
+| Антидребезг | 50 мс |
+| Автоповтор | 500/150 мс |
+
+*Для Arduino Nano (ATmega328P)*
+
+## 🐛 Обработка ошибок
+
+```cpp
 char state = keypad.getKey();
 
 if (state == KEY_ERROR) {
@@ -229,23 +250,27 @@ if (state == KEY_ERROR) {
     }
 }
 ```
-📋 Совместимость
 
-Платформа     Статус  
-Arduino Nano	  ✅  
-Arduino Uno	    ✅  
-Arduino Mega	  ✅  
+## 📋 Совместимость
 
-ESP32	          ⚠️ (не тестировалось)  
-ESP8266         ⚠️ (не тестировалось)  
-STM32	          ⚠️ (не тестировалось)  
+| Платформа | Статус |
+|-----------|--------|
+| Arduino Nano | ✅ |
+| Arduino Uno | ✅ |
+| Arduino Mega | ✅ |
+| ESP32 | ⚠️ (не тестировалось) |
+| ESP8266 | ⚠️ (не тестировалось) |
+| STM32 | ⚠️ (не тестировалось) |
 
-📄 Лицензия  
-    MIT License  
+## 📄 Лицензия
 
-## 📧 Контакты  
+MIT License. См. [LICENSE](LICENSE).
+
+## 📧 Контакты
 
 - **Email:** gray_wolf19@mail.ru
 - **GitHub:** [klenov1900-lang](https://github.com/klenov1900-lang)
+
+---
 
 ⭐ Если библиотека вам полезна, поставьте звезду на GitHub! ⭐
