@@ -1,0 +1,14 @@
+# Arduino
+*.hex
+*.elf
+*.map
+build/
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
